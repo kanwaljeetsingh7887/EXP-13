@@ -1,143 +1,125 @@
 # EXP-12
 
 ## Aim:
-**To study and implement Constructors and Destructors.**
+**To study and implement Constructor Overloading**
 
 ## Software:
 `Microsoft VSCode`
 
 ## Theory:
-Constructors:
+Constructor Overloading in C++ means that we have more than one constructor ina class with the same name, as long as each have a different list of arguments. A constructor is called depending upon the number and type of arguments passed.
 
-A constructor is a member functoin of a class that has the same name as the class name.
-
-It helps to initialize the object of a class.
-It is called whenever an instance of the class is created.
-Constructors are mostly declared inthe pulic section of the class though it can be declared in the private section of the class.
-Constructors can be overloaed.
-They can be defined inside or outside the class declaration.
-They are classified into three types - (1) Default Constructor, (2) Parameterized Constructor and (3) Copy Constructor.
-
-Destructors:
-A destructor is also a specialmember function like a constructor. Destructor destroys the class objects created by the constructor.
-Destructor has the same name as their class name preceded by a tilde (~) symbol.
-It is not possible to define more than one destructor.
-Destructor cannot be overloaded.
-
-Destructor neither requires any argument nor returns any value.
-It is automatically called when an object goes out of scope.
-Destructor release memory space occupied by the objects created by the constructor. Objectsaredestroyedc in the reverse of an object creation.
-## Code: 12A
+While creating the object, arguments must be passed to let compiler know, which constructor needs to be called.
+## Code: 13A
 ```
 // NAME - Kanwaljeet singh
 // PRN- 23070123124
-// EXPERIMENT - 12(A) 
+// EXPERIMENT - 13(A) 
 
-#include<iostream> 
-#include<string>
-using namespace std; 
-class Data {
-    string name;
-    int roll_no;
-    char dept[50];
-    char division;
+# include<iostream>
+using namespace std;
+
+class Room
+{
+    private:
+    double length;
+    double breadth;
 
     public:
-    Data() {
-        cout<<"Name: ";
-        cin>>name;
-        cout<<"Roll Number: ";
-        cin>>roll_no;
-        cout<<"Department: ";
-        cin>>dept;
-        cout<<"Division: ";
-        cin>>division;
+    Room()                             // Constuctor with no argument 
+    {
+        length=7.8;
+        breadth=5.1;
     }
-    void display() {
-        cout<<"\n"<<"DETAILS:"<<"\n"<<name<<"  "<<roll_no<<"  "<<dept<<"  "<<division<<"\n";
+    Room(double l, double b)      // Constructor with two arguments 
+    {
+        length=l;
+        breadth=b;
+    }
+    Room(double len)         // Constructor with one argument                 
+    {
+        length = len;
+        breadth=6.3;
+    }
+
+    double calculateArea() 
+    {
+        return length*breadth;
     }
 };
+
 int main() 
 {
-    Data d1;
-    d1.display();
+    Room room1, room2(8.2,6.6),room3(8.2);
+    cout<<"When no argument is passed: "<<"endl";
+    cout<<"Area of room="<<room1.calculateArea()<<endl;
+    cout<<"nWhen (8.2,6.6) is passed: "<<endl;
+    cout<<"Area of room = "<<room2.calculateArea()<<endl;
+    cout<<"nWhen breadth is fixed to 6.3 and (8.2) is passed."<<endl;
+    cout<<"Area of room = "<<room3.calculateArea()<<endl;
+
+    return 0;
 } 
 ```
 ## Output:
-![image](https://github.com/user-attachments/assets/ebe09b84-dc8e-4468-88ef-89e0551be0f1)
+![image](https://github.com/user-attachments/assets/2cae08d1-5e73-4964-99a3-f1bedbc3816a)
 
 
 
 
 
 
-## Code: 12B
+
+## Code: 13B
 ```
 // NAME - Kanwaljeet singh
 // PRN - 23070123124
-// EXPERIMENT - 12(B)
+// EXPERIMENT - 13(B)
 
 #include<iostream>
 using namespace std;
-class Num
+
+class fetch
 {
+    int num;
     public:
-    Num(int c, int d)
+    fetch()
     {
-        if(c>d)
-        {
-            cout<<c<<" is greater.";
-        }
-        else 
-        {
-            cout<<d<<" is greater.";
-        }
+        num = 3;
+    }
+    fetch(int x)
+    {
+        num = x;
+    }
+    fetch(fetch &b)
+    {
+        num = b.num;
+    }
+    void disp()
+    {
+        cout << num << endl;
     }
 };
+
 int main()
 {
-    Num n1(4,3);
-} 
-```
+    fetch f1, f2(6), f3(f1);
+    f1.disp();
+    f2.disp();
+    f3.disp();
 
-## Output:
-![image](https://github.com/user-attachments/assets/f0ccd7e1-97d3-4310-b43e-25cebd769bea)
-
-
-
-## Code:12C
-```
-// NAME - Kawaljeet singh
-// PRN - 23070123124
-// EXPERIMENT - 12(C) 
-
-#include<iostream>
-using namespace std;
-int count=0;
-class destruct{
-    public:
-    destruct()
-    {
-        count++;
-        cout<<"Number of objects created: "<<count<<"\n";
-    }
-    ~destruct()
-    {
-        count--;
-        cout<<"Number of objects destroyed: "<<count<<"\n";
-    }
-};
-int main()
-{
-    destruct aa,bb,cc;
-    {
-        destruct dd;
-    }
     return 0;
 }
 ```
-## Output: 
-![image](https://github.com/user-attachments/assets/deaed070-5f5e-4037-a461-de37e9f3eb88)
+
+## Output:
+![image](https://github.com/user-attachments/assets/aa3d7eba-9ada-4807-95f9-befd67ba3e81)
+
+
+
+
+
+
 
 ### Conclusion:
-I learnt about constuctors and its types, destructors and performed various programs based on that.
+We learnt the implementation and study of Constructor Overloading.
